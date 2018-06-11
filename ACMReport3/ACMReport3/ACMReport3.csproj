@@ -89,6 +89,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>acmreportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Form_ReportList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ReportList.Designer.cs">
+      <DependentUpon>Form_ReportList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Data.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     <Content Include="images\report.png" />
     <Content Include="report.ico" />
     <None Include="Resources\Image1.png" />
+    <EmbeddedResource Include="Form_ReportList.resx">
+      <DependentUpon>Form_ReportList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
     </EmbeddedResource>
