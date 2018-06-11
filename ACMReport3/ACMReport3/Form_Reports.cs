@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace ACMReport3
 {
-    public partial class Form_ReportList : Form
+    public partial class Form_Reports : Form
     {
-        public Form_ReportList()
+
+        public Form_Reports()
         {
             InitializeComponent();
+
+            this.label1.Text = this.MdiChildren.ToString();
         }
+
     }
 }

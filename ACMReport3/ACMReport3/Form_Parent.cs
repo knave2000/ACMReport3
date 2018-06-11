@@ -121,12 +121,11 @@ namespace ACMReport3
         {
             if (fa == null) // открыть форму можно только один раз
             {
-                fa = new Form_About
-                {
-                    MdiParent = this
-                };
+                fa = new Form_About();
+                fa.MdiParent = this;
                 fa.FormClosed += new FormClosedEventHandler(Fa_FormClosed);
                 fa.Show();
+                splitContainer1.Panel2.Controls.Add(fa);
             }
             else
                 fa.Activate(); // если форма уже открыта, то просто переключиться на неё
@@ -144,12 +143,11 @@ namespace ACMReport3
         {
             if (fc == null) // открыть форму можно только один раз
             {
-                fc = new Form_Connect
-                {
-                    MdiParent = this
-                };
+                fc = new Form_Connect();
+                fc.MdiParent = this;
                 fc.FormClosed += new FormClosedEventHandler(Fc_FormClosed);
                 fc.Show();
+                splitContainer1.Panel2.Controls.Add(fc);
             }
             else
                 fc.Activate(); // если форма уже открыта, то просто переключиться на неё
@@ -166,12 +164,11 @@ namespace ACMReport3
         {
             if (fp == null) // открыть форму можно только один раз
             {
-                fp = new Form_Parameters
-                {
-                    MdiParent = this
-                };
+                fp = new Form_Parameters();
+                fp.MdiParent = this;
                 fp.FormClosed += new FormClosedEventHandler(Fp_FormClosed);
                 fp.Show();
+                splitContainer1.Panel2.Controls.Add(fp);
             }
             else
                 fp.Activate(); // если форма уже открыта, то просто переключиться на неё
@@ -189,12 +186,11 @@ namespace ACMReport3
         {
             if (fd == null) // открыть форму можно только один раз
             {
-                fd = new Form_Data
-                {
-                    MdiParent = this
-                };
+                fd = new Form_Data();
+                fd.MdiParent = this;
                 fd.FormClosed += new FormClosedEventHandler(Fd_FormClosed);
                 fd.Show();
+                splitContainer1.Panel2.Controls.Add(fd);
             }
             else
                 fd.Activate(); // если форма уже открыта, то просто переключиться на неё
@@ -205,10 +201,39 @@ namespace ACMReport3
             //throw new NotImplementedException();
         }
 
-        public void ShowStatusbarMessage(Form frmMdiChild, string message)
+        public void ShowStatusbarMessage(string message)
         {
-            ToolStripStatusLabel statusStrip = ((Form_Parent)(frmMdiChild.MdiParent)).toolStripStatusLabel1;
+            ToolStripStatusLabel statusStrip = this.toolStripStatusLabel1;
             statusStrip.Text = message;
+        }
+
+        Form_Reports fr;
+
+        private void ReportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fr == null) // открыть форму можно только один раз
+            {
+                fr = new Form_Reports();
+                fr.MdiParent = this;
+                fr.FormClosed += new FormClosedEventHandler(Fr_FormClosed);
+                fr.Show();
+                splitContainer1.Panel2.Controls.Add(fr);
+            }
+            else
+                fr.Activate(); // если форма уже открыта, то просто переключиться на неё
+        }
+
+        private void Fr_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            fr = null; // если форма закрыта, то установить флаг в null
+            //throw new NotImplementedException();
+        }
+
+        private void Form_Parent_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "acmreportDataSet.query". При необходимости она может быть перемещена или удалена.
+            this.queryTableAdapter.Fill(this.acmreportDataSet.query);
+
         }
     }
 }

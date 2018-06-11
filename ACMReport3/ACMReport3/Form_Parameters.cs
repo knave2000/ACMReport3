@@ -29,7 +29,7 @@ namespace ACMReport3
         {
             // Write settings to application configuration file
             Properties.Settings.Default["FolderModules"] = tb_CommandTimeout.Text;
-            ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "параметры сохранены.");
+            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("параметры сохранены.");
         }
 
         private void Button_Browse_Click(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace ACMReport3
 
         private void Form_Parameters_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "");
+            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("");
         }
     }
 }

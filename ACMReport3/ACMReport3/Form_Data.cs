@@ -38,7 +38,7 @@ namespace ACMReport3
                 beginDateTime, endDateTime);
 
             log.Debug(SQLRemote);
-            ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "запрос для исходных данных подготовлен.");
+            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("запрос для исходных данных подготовлен.");
 
             // Очистить локальную базу данных
             string acmreportConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; " +
@@ -54,7 +54,7 @@ namespace ACMReport3
                 // Execute SQL Request
                 NpgsqlDataAdapter da_pg = new NpgsqlDataAdapter(SQLRemote, conn);
                 conn.Close();
-                ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "запрос на получение данных выполнен.");
+                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("запрос на получение данных выполнен.");
                 log.Info("Запрос на получение данных с ACM сервера выполнен.");
 
                 string SQLLocal = @"
@@ -67,7 +67,7 @@ namespace ACMReport3
                     END";
 
                 log.Debug(SQLLocal);
-                ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "запрос для кеширования данных подготовлен.");
+                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("запрос для кеширования данных подготовлен.");
 
                 try
                 {
@@ -75,12 +75,12 @@ namespace ACMReport3
                     SqlCommand cmdSql = new SqlCommand(SQLLocal, sqlConn);
                     cmdSql.ExecuteNonQuery();
                     sqlConn.Close();
-                    ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "загрузка данных в кеш выполнена успешно.");
+                    ((Form_Parent)this.ParentForm).ShowStatusbarMessage("загрузка данных в кеш выполнена успешно.");
                     log.Info("Запрос на кеширование данных выполнен. Ошибки в запросе не проверяются.");
                 }
                 catch (Exception ex)
                 {
-                    ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "не могу загрузить данные в кеш.");
+                    ((Form_Parent)this.ParentForm).ShowStatusbarMessage("не могу загрузить данные в кеш.");
                     log.Error("Не могу загрузить данные в локальную базу данных: {0}", ex.Message);
                 }
             }
@@ -88,7 +88,7 @@ namespace ACMReport3
             {
                 // if something went wrong, and you want to know why
                 //MessageBox.Show("ОШИБКА: не могу установить соединение с ACM сервером.\nПроверьте настройки соединения.");
-                ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "не могу получить данные с ACM сервера.");
+                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("не могу получить данные с ACM сервера.");
                 log.Error("Не могу получить данные с ACM сервера: {0}", ex.Message);
                 //throw;
             }

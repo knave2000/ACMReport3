@@ -37,14 +37,14 @@ namespace ACMReport3
                 conn.Open();
                 conn.Close();
                 //MessageBox.Show("Соединение с ACM сервером установлено успешно.");
-                ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "соединение ACM сервером установлено успешно.");
+                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("соединение ACM сервером установлено успешно.");
                 log.Info("При тестрировании соединение с ACM сервером установлено успешно.");
             }
             catch (Exception ex)
             {
                 // if something went wrong, and you want to know why
                 //MessageBox.Show("ОШИБКА: не могу установить соединение с ACM сервером. ");
-                ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "не могу установить соединение с ACM сервером.");
+                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("не могу установить соединение с ACM сервером.");
                 log.Error("Ошибка при тестировании соединения с сервером ACM: {0}", ex.Message);
 
                 //throw;
@@ -79,7 +79,7 @@ namespace ACMReport3
 
             Properties.Settings.Default["ConnectionString"] = ConnectionString;
 
-            ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "параметры соединения сохранены.");
+            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("параметры соединения сохранены.");
 
             string LogString = String.Format("Server={0};Port={1};UserId={2};Password=*****;" +
                 "CommandTimeout={3};Timeout={4};" +
@@ -90,7 +90,7 @@ namespace ACMReport3
 
         private void Form_Connect_FormClosed(object sender, FormClosedEventArgs e)
         {
-            ((Form_Parent)this.MdiParent).ShowStatusbarMessage(this, "");
+            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("");
         }
     }
 }

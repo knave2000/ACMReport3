@@ -84,16 +84,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="acmreportDataSet.cs">
+      <DependentUpon>acmreportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="acmreportDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>acmreportDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form_ReportList.cs">
+    <Compile Include="Form_Reports.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_ReportList.Designer.cs">
-      <DependentUpon>Form_ReportList.cs</DependentUpon>
+    <Compile Include="Form_Reports.Designer.cs">
+      <DependentUpon>Form_Reports.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Data.cs">
       <SubType>Form</SubType>
@@ -112,12 +115,6 @@
     </Compile>
     <Compile Include="Form_About.Designer.cs">
       <DependentUpon>Form_About.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form_Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Main.Designer.cs">
-      <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Connect.cs">
       <SubType>Form</SubType>
@@ -156,17 +153,14 @@
     <Content Include="images\report.png" />
     <Content Include="report.ico" />
     <None Include="Resources\Image1.png" />
-    <EmbeddedResource Include="Form_ReportList.resx">
-      <DependentUpon>Form_ReportList.cs</DependentUpon>
+    <EmbeddedResource Include="Form_Reports.resx">
+      <DependentUpon>Form_Reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Data.resx">
       <DependentUpon>Form_Data.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Main.resx">
-      <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Connect.resx">
       <DependentUpon>Form_Connect.cs</DependentUpon>
