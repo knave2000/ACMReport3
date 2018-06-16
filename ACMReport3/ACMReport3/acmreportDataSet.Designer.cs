@@ -1391,7 +1391,7 @@ SELECT Id, query_sql, query_name FROM query WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ACMReport3.Properties.Settings.Default.acmreportConnectionString;
+            this._connection.ConnectionString = global::ACMReport3.Properties.Settings.Default.csLocal;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1749,7 +1749,7 @@ SELECT Id, field, name, type, query_id, number FROM param WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::ACMReport3.Properties.Settings.Default.acmreportConnectionString;
+            this._connection.ConnectionString = global::ACMReport3.Properties.Settings.Default.csLocal;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

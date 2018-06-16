@@ -44,6 +44,7 @@
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.loadDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,13 +61,12 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.acmreportDataSet = new ACMReport3.acmreportDataSet();
-            this.acmreportDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.queryTableAdapter = new ACMReport3.acmreportDataSetTableAdapters.queryTableAdapter();
             this.querynameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.acmreportDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.acmreportDataSet = new ACMReport3.acmreportDataSet();
+            this.queryTableAdapter = new ACMReport3.acmreportDataSetTableAdapters.queryTableAdapter();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -74,8 +74,8 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.acmreportDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.acmreportDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.acmreportDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -184,23 +184,30 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.optionsToolStripMenuItem.Text = "&Параметры";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(200, 26);
             this.toolStripMenuItem1.Text = "&Соединение";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1_Click);
             // 
             // loadDataToolStripMenuItem
             // 
             this.loadDataToolStripMenuItem.Name = "loadDataToolStripMenuItem";
-            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.loadDataToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.loadDataToolStripMenuItem.Text = "Загрузка данных";
             this.loadDataToolStripMenuItem.Click += new System.EventHandler(this.LoadDataToolStripMenuItem_Click);
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
+            this.reportsToolStripMenuItem.Text = "Отчеты";
+            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.ReportsToolStripMenuItem_Click);
             // 
             // helpMenu
             // 
@@ -325,13 +332,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 20);
             // 
-            // reportsToolStripMenuItem
-            // 
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.reportsToolStripMenuItem.Text = "Отчеты";
-            this.reportsToolStripMenuItem.Click += new System.EventHandler(this.ReportsToolStripMenuItem_Click);
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -342,6 +342,10 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1MinSize = 150;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitContainer1.Panel2MinSize = 500;
             this.splitContainer1.Size = new System.Drawing.Size(782, 475);
             this.splitContainer1.SplitterDistance = 200;
@@ -380,20 +384,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(200, 475);
             this.dataGridView1.TabIndex = 0;
             // 
-            // acmreportDataSet
-            // 
-            this.acmreportDataSet.DataSetName = "acmreportDataSet";
-            this.acmreportDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // acmreportDataSetBindingSource
-            // 
-            this.acmreportDataSetBindingSource.DataMember = "query";
-            this.acmreportDataSetBindingSource.DataSource = this.acmreportDataSet;
-            // 
-            // queryTableAdapter
-            // 
-            this.queryTableAdapter.ClearBeforeFill = true;
-            // 
             // querynameDataGridViewTextBoxColumn
             // 
             this.querynameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -402,6 +392,20 @@
             this.querynameDataGridViewTextBoxColumn.Name = "querynameDataGridViewTextBoxColumn";
             this.querynameDataGridViewTextBoxColumn.ReadOnly = true;
             this.querynameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // acmreportDataSetBindingSource
+            // 
+            this.acmreportDataSetBindingSource.DataMember = "query";
+            this.acmreportDataSetBindingSource.DataSource = this.acmreportDataSet;
+            // 
+            // acmreportDataSet
+            // 
+            this.acmreportDataSet.DataSetName = "acmreportDataSet";
+            this.acmreportDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // queryTableAdapter
+            // 
+            this.queryTableAdapter.ClearBeforeFill = true;
             // 
             // Form_Parent
             // 
@@ -430,8 +434,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.acmreportDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.acmreportDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.acmreportDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

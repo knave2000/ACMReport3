@@ -122,11 +122,20 @@ namespace ACMReport3.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\acmreport.mdf" +
-            ";Integrated Security=True;Connect Timeout=30")]
-        public string acmreportConnectionString {
+        public string csLocal {
             get {
-                return ((string)(this["acmreportConnectionString"]));
+                return ((string)(this["csLocal"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Port=5432;UserId=postgres;Password=postgres;CommandTimeout=300;T" +
+            "imeout=30;Database=data;SSLMode=Prefer;")]
+        public string csRemote {
+            get {
+                return ((string)(this["csRemote"]));
             }
         }
     }

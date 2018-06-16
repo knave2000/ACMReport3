@@ -34,6 +34,7 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.label_CommandTimeout = new System.Windows.Forms.Label();
             this.gb_Settings = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.gb_Settings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,11 +88,22 @@
             this.gb_Settings.TabStop = false;
             this.gb_Settings.Text = "Модули";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 168);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 30);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Очистить кеш";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form_Parameters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 210);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button_Save);
             this.Controls.Add(this.gb_Settings);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -116,5 +128,6 @@
         private System.Windows.Forms.Button button_Browse;
         private System.Windows.Forms.Label label_CommandTimeout;
         private System.Windows.Forms.GroupBox gb_Settings;
+        private System.Windows.Forms.Button button1;
     }
 }

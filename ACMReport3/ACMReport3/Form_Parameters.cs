@@ -49,5 +49,10 @@ namespace ACMReport3
         {
             ((Form_Parent)this.ParentForm).ShowStatusbarMessage("");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

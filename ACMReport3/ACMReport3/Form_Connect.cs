@@ -32,7 +32,7 @@ namespace ACMReport3
         {
             try
             {
-                string connStr = Properties.Settings.Default["ConnectionString"].ToString();
+                string connStr = Properties.Settings.Default["csRemote"].ToString();
                 NpgsqlConnection conn = new NpgsqlConnection(connStr);
                 conn.Open();
                 conn.Close();
@@ -72,20 +72,22 @@ namespace ACMReport3
 
             // PostgeSQL-style connection string
             // SSL encryption is required for ACM connection
-            string ConnectionString = String.Format("Server={0};Port={1};UserId={2};Password={3};" +
+            string csRemote = String.Format("Server={0};Port={1};UserId={2};Password={3};" +
                     "CommandTimeout={4};Timeout={5};" +
                     "Database=TransactionDB;SSLMode=Require;TrustServerCertificate=true;",
                     ACMServerIP, ACMServerPort, ACMUsername, ACMPassword, CommandTimeout, Timeout);
-
-            Properties.Settings.Default["ConnectionString"] = ConnectionString;
-
-            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("параметры соединения сохранены.");
-
-            string LogString = String.Format("Server={0};Port={1};UserId={2};Password=*****;" +
+            
+            // строка подключения к ACM серверу со скрытым паролем для отображения в лог-файле
+            string log_csRemote = String.Format("Server={0};Port={1};UserId={2};Password=*****;" +
                 "CommandTimeout={3};Timeout={4};" +
                 "Database=TransactionDB;SSLMode=Require;TrustServerCertificate=true;",
                 ACMServerIP, ACMServerPort, ACMUsername, CommandTimeout, Timeout);
-            log.Info("Параметры соединения сохранены: {0}", LogString);
+
+            // отчет о формирование строки подключения к ACM серверу
+            log.Info("Параметры соединения сохранены.");
+            log.Debug(log_csRemote);
+            Properties.Settings.Default["csRemote"] = csRemote;
+            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("параметры соединения сохранены.");
         }
 
         private void Form_Connect_FormClosed(object sender, FormClosedEventArgs e)

@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="acmreportConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="acmreportConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ACMReport3.Properties.Settings.GlobalReference.Default.acmreportConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="csLocal" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="csLocal (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ACMReport3.Properties.Settings.GlobalReference.Default.csLocal" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="queryTableAdapter" GeneratorDataComponentClassName="queryTableAdapter" Name="query" UserDataComponentName="queryTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="acmreportConnectionString (Settings)" DbObjectName="dbo.query" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="csLocal (Settings)" DbObjectName="dbo.query" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[query] WHERE (([Id] = @Original_Id) AND ((@IsNull_query_name = 1 AND [query_name] IS NULL) OR ([query_name] = @Original_query_name)))</CommandText>
@@ -61,7 +61,7 @@ SELECT Id, query_sql, query_name FROM query WHERE (Id = @Id)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="paramTableAdapter" GeneratorDataComponentClassName="paramTableAdapter" Name="param" UserDataComponentName="paramTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="acmreportConnectionString (Settings)" DbObjectName="dbo.param" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="csLocal (Settings)" DbObjectName="dbo.param" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[param] WHERE (([Id] = @Original_Id) AND ([field] = @Original_field) AND ((@IsNull_name = 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_type = 1 AND [type] IS NULL) OR ([type] = @Original_type)) AND ([query_id] = @Original_query_id) AND ([number] = @Original_number))</CommandText>
@@ -139,7 +139,7 @@ SELECT Id, field, name, type, query_id, number FROM param WHERE (Id = @Id)</Comm
   <xs:element name="acmreportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="acmreportDataSet" msprop:Generator_UserDSName="acmreportDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="query" msprop:Generator_TableClassName="queryDataTable" msprop:Generator_TableVarName="tablequery" msprop:Generator_TablePropName="query" msprop:Generator_RowDeletingName="queryRowDeleting" msprop:Generator_RowChangingName="queryRowChanging" msprop:Generator_RowEvHandlerName="queryRowChangeEventHandler" msprop:Generator_RowDeletedName="queryRowDeleted" msprop:Generator_UserTableName="query" msprop:Generator_RowChangedName="queryRowChanged" msprop:Generator_RowEvArgName="queryRowChangeEvent" msprop:Generator_RowClassName="queryRow">
+        <xs:element name="query" msprop:Generator_TableClassName="queryDataTable" msprop:Generator_TableVarName="tablequery" msprop:Generator_RowChangedName="queryRowChanged" msprop:Generator_TablePropName="query" msprop:Generator_RowDeletingName="queryRowDeleting" msprop:Generator_RowChangingName="queryRowChanging" msprop:Generator_RowEvHandlerName="queryRowChangeEventHandler" msprop:Generator_RowDeletedName="queryRowDeleted" msprop:Generator_RowClassName="queryRow" msprop:Generator_UserTableName="query" msprop:Generator_RowEvArgName="queryRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -160,7 +160,7 @@ SELECT Id, field, name, type, query_id, number FROM param WHERE (Id = @Id)</Comm
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="param" msprop:Generator_TableClassName="paramDataTable" msprop:Generator_TableVarName="tableparam" msprop:Generator_TablePropName="param" msprop:Generator_RowDeletingName="paramRowDeleting" msprop:Generator_RowChangingName="paramRowChanging" msprop:Generator_RowEvHandlerName="paramRowChangeEventHandler" msprop:Generator_RowDeletedName="paramRowDeleted" msprop:Generator_UserTableName="param" msprop:Generator_RowChangedName="paramRowChanged" msprop:Generator_RowEvArgName="paramRowChangeEvent" msprop:Generator_RowClassName="paramRow">
+        <xs:element name="param" msprop:Generator_TableClassName="paramDataTable" msprop:Generator_TableVarName="tableparam" msprop:Generator_RowChangedName="paramRowChanged" msprop:Generator_TablePropName="param" msprop:Generator_RowDeletingName="paramRowDeleting" msprop:Generator_RowChangingName="paramRowChanging" msprop:Generator_RowEvHandlerName="paramRowChangeEventHandler" msprop:Generator_RowDeletedName="paramRowDeleted" msprop:Generator_RowClassName="paramRow" msprop:Generator_UserTableName="param" msprop:Generator_RowEvArgName="paramRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -197,7 +197,7 @@ SELECT Id, field, name, type, query_id, number FROM param WHERE (Id = @Id)</Comm
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_param_query" msdata:parent="query" msdata:child="param" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="param" msprop:Generator_ChildPropName="GetparamRows" msprop:Generator_UserRelationName="FK_param_query" msprop:Generator_ParentPropName="queryRow" msprop:Generator_RelationVarName="relationFK_param_query" msprop:Generator_UserParentTable="query" />
+      <msdata:Relationship name="FK_param_query" msdata:parent="query" msdata:child="param" msdata:parentkey="Id" msdata:childkey="Id" msprop:Generator_UserChildTable="param" msprop:Generator_ChildPropName="GetparamRows" msprop:Generator_UserRelationName="FK_param_query" msprop:Generator_RelationVarName="relationFK_param_query" msprop:Generator_UserParentTable="query" msprop:Generator_ParentPropName="queryRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

@@ -2,8 +2,7 @@
 using Npgsql;
 using System;
 using System.Windows.Forms;
-using System.Data;
-using System.Data.SqlClient;
+
 
 namespace ACMReport3
 {
@@ -20,77 +19,96 @@ namespace ACMReport3
         private void Button_Load_Click(object sender, EventArgs e)
         {
 
-            DateTime beginDate = dateTimePicker_BeginDate.Value.Date +
-                    dateTimePicker_BeginTime.Value.TimeOfDay;
-            DateTime endDate = dateTimePicker_EndDate.Value.Date +
-                    dateTimePicker_EndTime.Value.TimeOfDay;
+            DateTime beginDate = dateTimePicker_BeginDate.Value.Date + dateTimePicker_BeginTime.Value.TimeOfDay;
+            DateTime endDate = dateTimePicker_EndDate.Value.Date + dateTimePicker_EndTime.Value.TimeOfDay;
 
             string beginDateTime = String.Format("{0:yyyy-MM-dd} {0:HH:mm:ss}", beginDate);
             string endDateTime = String.Format("{0:yyyy-MM-dd} {0:HH:mm:ss}", endDate);
 
-            string connStr = Properties.Settings.Default["ConnectionString"].ToString();
+            string csRemote = Properties.Settings.Default["csRemote"].ToString();
+            NpgsqlConnection connRemote = new NpgsqlConnection(csRemote);
 
-            // Подготовить запрос данных от сервера ACM
-            string SQLRemote = String.Format(
-                "SELECT * FROM rpt_alltrx " +
-                "WHERE to_timestamp(trxdateutc) >= to_timestamp('{0}', 'YYYY-MM-DD HH24:MI:SS') " +
-                "AND to_timestamp(trxdateutc) <= to_timestamp('{1}', 'YYYY-MM-DD HH24:MI:SS')",
+            string csLocal = Properties.Settings.Default["csLocal"].ToString();
+            NpgsqlConnection connLocal = new NpgsqlConnection(csLocal);
+
+            log.Debug("connLocal");
+
+            // TEST (comment after test complete)
+            beginDateTime = "2018-03-30 00:00:00";
+            endDateTime = "2018-03-30 23:59:59";
+
+            // Подготовить запрос на чтение данных
+            string SQLRead = String.Format(@"
+                COPY (SELECT * FROM rpt_alltrx
+                WHERE to_timestamp(trxdateutc) >= to_timestamp('{0}', 'YYYY-MM-DD HH24:MI:SS')
+                AND to_timestamp(trxdateutc) <= to_timestamp('{1}', 'YYYY-MM-DD HH24:MI:SS')
+                ) TO STDOUT " +
+                "(FORMAT 'binary')",
                 beginDateTime, endDateTime);
 
-            log.Debug(SQLRemote);
-            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("запрос для исходных данных подготовлен.");
+            // Подготовиь запрос на запись данных
+            string SQLWrite = String.Format(@"
+                COPY rpt_alltrx
+                FROM STDIN BINARY
+                ");
 
-            // Очистить локальную базу данных
-            string acmreportConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; " +
-                @"AttachDbFilename=|DataDirectory|\acmreport.mdf;
-                Integrated Security = True;
-                Connect Timeout = 30";
-            SqlConnection sqlConn = new SqlConnection(acmreportConnectionString);
+            log.Debug(SQLRead);
+            ((Form_Parent)this.ParentForm).ShowStatusbarMessage("запрос на получение исходных данных подготовлен.");
 
             try
             {
-                NpgsqlConnection conn = new NpgsqlConnection(connStr);
-                conn.Open();
-                // Execute SQL Request
-                NpgsqlDataAdapter da_pg = new NpgsqlDataAdapter(SQLRemote, conn);
-                conn.Close();
-                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("запрос на получение данных выполнен.");
-                log.Info("Запрос на получение данных с ACM сервера выполнен.");
+                Cursor.Current = Cursors.WaitCursor;
 
-                string SQLLocal = @"
-                    IF EXISTS (SELECT * 
-                        FROM INFORMATION_SCHEMA.TABLES 
-                        WHERE TABLE_NAME = N'rpt_alltrx')
-                    BEGIN
-                        -- Clean cache table
-                        TRUNCATE TABLE rpt_alltrx
-                    END";
-
-                log.Debug(SQLLocal);
-                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("запрос для кеширования данных подготовлен.");
+                connRemote.Open();  // Source
 
                 try
                 {
-                    sqlConn.Open();
-                    SqlCommand cmdSql = new SqlCommand(SQLLocal, sqlConn);
-                    cmdSql.ExecuteNonQuery();
-                    sqlConn.Close();
-                    ((Form_Parent)this.ParentForm).ShowStatusbarMessage("загрузка данных в кеш выполнена успешно.");
-                    log.Info("Запрос на кеширование данных выполнен. Ошибки в запросе не проверяются.");
+                    connLocal.Open();   // Destination
                 }
                 catch (Exception ex)
                 {
-                    ((Form_Parent)this.ParentForm).ShowStatusbarMessage("не могу загрузить данные в кеш.");
-                    log.Error("Не могу загрузить данные в локальную базу данных: {0}", ex.Message);
+                    ((Form_Parent)this.ParentForm).ShowStatusbarMessage("не могу подключиться к локальному серверу.");
+                    log.Info("Мне могу подключиться к локальному серверу: {0}", ex.Message);
                 }
+
+                // Npgsql bulk copy: http://www.npgsql.org/doc/copy.html
+                // PostgreSQL COPY command: https://www.postgresql.org/docs/current/static/sql-copy.html
+
+                using (var reader = connRemote.BeginBinaryExport(SQLRead))
+                using (var writer = connRemote.BeginBinaryImport(SQLWrite))
+                {
+                    //while (reader.StartRow() > 0) // читать в цикле все записи: пока не будет -1
+                    //{
+                    //log.Debug(reader.ReadLine()); // text export
+                    reader.StartRow();
+                    writer.StartRow();
+
+                    writer.Write<string>(reader.Read<string>());
+
+                    log.Debug(reader.Read<string>());
+
+                    //reader.StartRow(); 
+                    //log.Debug(reader.Read<string>());
+                    //log.Debug(reader.Read<string>());
+                    //}
+                }
+                connLocal.Close();
+                connRemote.Close();
+
+                ((Form_Parent)this.ParentForm).ShowStatusbarMessage("загрузка данных в кеш выполнена успешно.");
+                log.Info("Запрос на кеширование данных выполнен успешно.");
+
             }
             catch (Exception ex)
             {
                 // if something went wrong, and you want to know why
-                //MessageBox.Show("ОШИБКА: не могу установить соединение с ACM сервером.\nПроверьте настройки соединения.");
                 ((Form_Parent)this.ParentForm).ShowStatusbarMessage("не могу получить данные с ACM сервера.");
                 log.Error("Не могу получить данные с ACM сервера: {0}", ex.Message);
                 //throw;
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
             }
 
         }

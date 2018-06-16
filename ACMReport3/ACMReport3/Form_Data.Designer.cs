@@ -137,7 +137,7 @@
             this.Name = "Form_Data";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Закгрузка данных";
+            this.Text = "Загрузка данных";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
