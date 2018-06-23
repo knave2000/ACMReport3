@@ -23,24 +23,27 @@
     <Setting Name="Timeout" Type="System.String" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
-    <Setting Name="FolderModules" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="PluginsFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">plugins.xml</Value>
     </Setting>
     <Setting Name="csLocal" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString /&gt;
+  &lt;ConnectionString&gt;Server=localhost;Port=5432;UserId=postgres;Password=postgres;CommandTimeout=300;Timeout=30;Database=data;SSLMode=Prefer;&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Server=localhost;Port=5432;UserId=postgres;Password=postgres;CommandTimeout=300;Timeout=30;Database=data;SSLMode=Prefer;</Value>
     </Setting>
     <Setting Name="csRemote" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Server=localhost;Port=5432;UserId=postgres;Password=postgres;CommandTimeout=300;Timeout=30;Database=data;SSLMode=Prefer;&lt;/ConnectionString&gt;
+  &lt;ConnectionString /&gt;
   &lt;ProviderName&gt;Npgsql&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Server=localhost;Port=5432;UserId=postgres;Password=postgres;CommandTimeout=300;Timeout=30;Database=data;SSLMode=Prefer;</Value>
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Cache" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

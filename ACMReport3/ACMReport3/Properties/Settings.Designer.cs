@@ -109,19 +109,21 @@ namespace ACMReport3.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string FolderModules {
+        [global::System.Configuration.DefaultSettingValueAttribute("plugins.xml")]
+        public string PluginsFileName {
             get {
-                return ((string)(this["FolderModules"]));
+                return ((string)(this["PluginsFileName"]));
             }
             set {
-                this["FolderModules"] = value;
+                this["PluginsFileName"] = value;
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Port=5432;UserId=postgres;Password=postgres;CommandTimeout=300;T" +
+            "imeout=30;Database=data;SSLMode=Prefer;")]
         public string csLocal {
             get {
                 return ((string)(this["csLocal"]));
@@ -131,11 +133,21 @@ namespace ACMReport3.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=localhost;Port=5432;UserId=postgres;Password=postgres;CommandTimeout=300;T" +
-            "imeout=30;Database=data;SSLMode=Prefer;")]
         public string csRemote {
             get {
                 return ((string)(this["csRemote"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Cache {
+            get {
+                return ((bool)(this["Cache"]));
+            }
+            set {
+                this["Cache"] = value;
             }
         }
     }

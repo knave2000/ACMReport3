@@ -1,6 +1,8 @@
 ﻿using NLog;
 using System;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.XPath;
 
 namespace ACMReport3
 {
@@ -10,29 +12,30 @@ namespace ACMReport3
         private static Logger log = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Главная точка входа для приложения.
+        /// The main enter point to Application.
         /// </summary>
         [STAThread]
         static void Main()
         {
             try
             {
-                log.Trace("Версия среды: {0}", Environment.Version.ToString());
-                log.Trace("ОС: {0}", Environment.OSVersion.ToString());
-                log.Trace("Файл: {0}", Environment.CommandLine.ToString());
-                log.Trace("Название компьютера: {0}", Environment.MachineName.ToString());
-                log.Trace("Название домена: {0}", Environment.UserDomainName.ToString());
-                log.Trace("Количество процессоров: {0}", Environment.ProcessorCount.ToString());
-                log.Trace("Используемая память: {0}", Environment.WorkingSet.ToString());
+                log.Trace("OS: {0}", Environment.OSVersion.ToString());
+                log.Trace("Filename: {0}", Environment.CommandLine.ToString());
+                log.Trace("Machine Name: {0}", Environment.MachineName.ToString());
+                log.Trace("User Domain Name: {0}", Environment.UserDomainName.ToString());
+                log.Trace("CPU: {0}", Environment.ProcessorCount.ToString());
+                //log.Trace("Environment Version: {0}", Environment.Version.ToString());
+                //log.Trace("Working Set memory: {0}", Environment.WorkingSet.ToString());
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка работы с логом!\n" + ex.Message);
+                MessageBox.Show("Log file error: {0}", ex.Message);
             }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form_Parent());
         }
+
     }
 }

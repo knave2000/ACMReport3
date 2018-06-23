@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<plugins>
+  <plugin>
+    <name>Attendance report</name>
+    <query>
+      <![CDATA[
+      SELECT
+        row_number() OVER (ORDER BY s.fn1 NULLS LAST) AS number,
+        s.fn1 AS name,
+        s.start_date AS start,
+        e.end_date AS end,
+        e.end_date - s.start_date AS duration
+      FROM
+        (
+        SELECT
+          to_timestamp(min(trxdateutc)) AS start_date,
+          fullname AS fn1
+        FROM rpt_alltrx
+        WHERE eventname like '%{0}%'
+          AND sourcename like '%{1}%'
+          AND to_timestamp(trxdateutc) >= to_timestamp('{4}', 'YYYY-MM-DD HH24:MI:SS')
+          AND to_timestamp(trxdateutc) <= to_timestamp('{5}', 'YYYY-MM-DD HH24:MI:SS')
+        GROUP BY fullname
+        ) AS s
+      LEFT JOIN
+        (
+        SELECT
+          to_timestamp(max(trxdateutc)) AS end_date,
+          fullname AS fn2 +
+        FROM rpt_alltrx
+        WHERE eventname like '%{2}%'
+          AND sourcename like '%{3}%'
+          AND to_timestamp(trxdateutc) >= to_timestamp('{4}', 'YYYY-MM-DD HH24:MI:SS')
+          AND to_timestamp(trxdateutc) <= to_timestamp('{5}', 'YYYY-MM-DD HH24:MI:SS')
+        GROUP BY fullname
+        ) AS e
+      ON s.fn1 = e.fn2
+      ORDER BY name ASC;
+      ]]>
+    </query>
+    <parameters>
+      <param index='0' name='enter_event' type='string' field='eventname' label='Enter event' >
+        <query>
+          <![CDATA[
+          SELECT DISTINCT(eventname) FROM rpt_alltrx
+          ]]>
+        </query>
+      </param>
+      <param index='15' name='enter_source' type='string' field='sourcename' label='Enter source' >
+        <query>
+          <![CDATA[
+          SELECT DISTINCT(sourcename) FROM rpt_alltrx
+          ]]>
+        </query>
+      </param>
+      <param index='10' name='exit_event' type='string' field='eventname' label='Exit event' >
+        <query>
+          <![CDATA[
+          SELECT DISTINCT(eventname) FROM rpt_alltrx
+          ]]>
+        </query>
+      </param>
+      <param index='3' name='exit_source' type='string' field='sourcename' label='Exit source' >
+        <query>
+          <![CDATA[
+          SELECT DISTINCT(sourcename) FROM rpt_alltrx
+          ]]>
+        </query>
+      </param>
+      <param index='4' name='begin' type='datetime' field='trxdateutc' label='Start datetime' />
+      <param index='5' name='end' type='datetime' field='trxdateutc' label='Finish datetime' />
+    </parameters>
+  </plugin>
+  <plugin>
+    <name>Latecomers report</name>
+    <query>
+      <![CDATA[
+      SELECT
+        row_number() OVER (ORDER BY s.fn1 NULLS LAST) AS number,
+        s.fn1 AS name,
+        s.start_date AS start,
+        e.end_date AS end,
+        e.end_date - s.start_date AS duration
+      FROM
+        (
+        SELECT
+          to_timestamp(min(trxdateutc)) AS start_date,
+          fullname AS fn1
+        FROM rpt_alltrx
+        WHERE eventname like '%{0}%'
+          AND sourcename like '%{1}%'
+          AND to_timestamp(trxdateutc) >= to_timestamp('{4}', 'YYYY-MM-DD')
+          AND to_timestamp(trxdateutc) <= to_timestamp('{5}', 'YYYY-MM-DD')
+        GROUP BY fullname
+        ) AS s
+      LEFT JOIN
+        (
+        SELECT
+          to_timestamp(max(trxdateutc)) AS end_date,
+          fullname AS fn2 +
+        FROM rpt_alltrx
+        WHERE eventname like '%{2}%'
+          AND sourcename like '%{3}%'
+          AND to_timestamp(trxdateutc) >= to_timestamp('{4}', 'YYYY-MM-DD')
+          AND to_timestamp(trxdateutc) <= to_timestamp('{5}', 'YYYY-MM-DD')
+        GROUP BY fullname
+        ) AS e
+      ON s.fn1 = e.fn2
+      ORDER BY name ASC;
+      ]]>
+    </query>
+    <parameters>
+      <param index='0' name='enter_event' type='string' field='eventname' label='Enter event'>
+        <query>
+          <![CDATA[
+          SELECT DISTINCT(eventname) FROM rpt_alltrx
+          ]]>
+        </query>
+      </param>
+      <param index='1' name='enter_source' type='string' field='eventsource' label='Enter source' />
+      <param index='2' name='exit_event' type='string' field='eventname' label='Exit event'>
+        <query>
+          <![CDATA[
+          SELECT DISTINCT(eventname) FROM rpt_alltrx
+          ]]>
+        </query>
+      </param>
+      <param index='3' name='begin' type='datetime' field='trxdateutc' label='Start datetime' />
+    </parameters>
+  </plugin>
+</plugins>

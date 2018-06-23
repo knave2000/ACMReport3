@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using NLog;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NLog;
 using System.Windows.Forms;
+using Npgsql;
+using System.Data.SqlClient;
+using System.Reflection;
+using System.IO;
 
 namespace ACMReport3
 {
@@ -16,163 +14,228 @@ namespace ACMReport3
         // Logger
         private static Logger log = LogManager.GetCurrentClassLogger();
 
+        // hide selected cell in parameter form when it load first time
+        private static Boolean firstTime = true;
+
+        // plugin file name
+        public String fnPlugin = Properties.Settings.Default["PluginsFileName"].ToString();
+
+        // selected report
+        public String reportName = null;
+
         public Form_Parent()
         {
             InitializeComponent();
 
-            log.Info("Приложение запущено.");
+            log.Info("Application started.");           
         }
 
-
-        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Form_Parent_FormClosed(object sender, FormClosedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+            log.Info("Application closed.");
+        }
+
+        private void Form_Parent_Load(object sender, EventArgs e)
+        {
+            // load plugins list from XML file
+
+            DataSet dsData = new DataSet();
+            try
             {
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                Filter = "Запросы (*.sql)|*.sql"
-            };
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = saveFileDialog.FileName;
+                dsData.ReadXml(fnPlugin);
+                log.Info("Read plugins file: " + fnPlugin);
+                this.ShowStatusbarMessage("Plugins loaded.");
             }
+            catch
+            {
+                log.Error("Could not read plugins file: " + fnPlugin);
+                this.ShowStatusbarMessage("Couldn't load plugins.");
+            }
+            
+            gvData.DataSource = dsData;
+            gvData.DataMember = "plugin";
+            gvData.Columns["name"].HeaderText = "Report list";
+            gvData.Columns["query"].Visible = false;
+
+            if (gvData.RowCount > 0 && gvData.ColumnCount > 0)
+            {
+                gvData.CurrentCell = gvData[0, 0];
+                gvData.CurrentCell.Selected = false;
+                firstTime = false;
+            }
+
         }
 
-        private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
+        private void StripMenuItem_Exit_Click(object sender, EventArgs e)
         {
-            log.Info("Приложение остановлено.");
             this.Close();
         }
 
-        private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StripMenuItem_Toolbar_Click(object sender, EventArgs e)
         {
             toolStrip.Visible = toolBarToolStripMenuItem.Checked;
         }
 
-        private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StripMenuItem_Statusbar_Click(object sender, EventArgs e)
         {
             statusStrip.Visible = statusBarToolStripMenuItem.Checked;
         }
 
         Form_About fa;
 
-        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StripMenuItem_About_Click(object sender, EventArgs e)
         {
-            if (fa == null) // открыть форму можно только один раз
+            if (fa == null) // open single form copy
             {
                 fa = new Form_About();
-                fa.MdiParent = this;
                 fa.FormClosed += new FormClosedEventHandler(Fa_FormClosed);
-                fa.Show();
-                splitContainer1.Panel2.Controls.Add(fa);
+                fa.Show(this);
             }
             else
-                fa.Activate(); // если форма уже открыта, то просто переключиться на неё
+                fa.Activate(); // activate form if it is already opened
         }
 
         private void Fa_FormClosed(object sender, FormClosedEventArgs e)
         {
-            fa = null; // если форма закрыта, то установить флаг в null
-            //throw new NotImplementedException();
+            log.Trace("Form {0} closed.", fa.Text);
+            fa = null; // set open form flag to null
         }
 
-        Form_Connect fc;
+        Form_Connection fc;
 
-        private void ToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void StripMenuItem_Connection_Click(object sender, EventArgs e)
         {
-            if (fc == null) // открыть форму можно только один раз
+            if (fc == null) // open single form copy
             {
-                fc = new Form_Connect();
-                fc.MdiParent = this;
+                fc = new Form_Connection();
                 fc.FormClosed += new FormClosedEventHandler(Fc_FormClosed);
-                fc.Show();
-                splitContainer1.Panel2.Controls.Add(fc);
+                fc.Show(this);
             }
             else
-                fc.Activate(); // если форма уже открыта, то просто переключиться на неё
+                fc.Activate(); // activate form if it is already opened
         }
         private void Fc_FormClosed(object sender, FormClosedEventArgs e)
         {
-            fc = null; // если форма закрыта, то установить флаг в null
-            //throw new NotImplementedException();
+            log.Trace("Form {0} closed.", fc.Text);
+            fc = null; // set open form flag to null
         }
 
-        Form_Parameters fp;
+        Form_Plugins fd;
 
-        private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StripMenuItem_Plugins_Click(object sender, EventArgs e)
         {
-            if (fp == null) // открыть форму можно только один раз
+            if (fd == null) // open single form copy
             {
-                fp = new Form_Parameters();
-                fp.MdiParent = this;
-                fp.FormClosed += new FormClosedEventHandler(Fp_FormClosed);
-                fp.Show();
-                splitContainer1.Panel2.Controls.Add(fp);
-            }
-            else
-                fp.Activate(); // если форма уже открыта, то просто переключиться на неё
-        }
-
-        private void Fp_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            fp = null; // если форма закрыта, то установить флаг в null
-            //throw new NotImplementedException();
-        }
-
-        Form_Data fd;
-
-        private void LoadDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (fd == null) // открыть форму можно только один раз
-            {
-                fd = new Form_Data();
-                fd.MdiParent = this;
+                fd = new Form_Plugins();
                 fd.FormClosed += new FormClosedEventHandler(Fd_FormClosed);
-                fd.Show();
-                splitContainer1.Panel2.Controls.Add(fd);
+                fd.Show(this);
             }
             else
-                fd.Activate(); // если форма уже открыта, то просто переключиться на неё
+                fd.Activate(); // activate form if it is already opened
         }
         private void Fd_FormClosed(object sender, FormClosedEventArgs e)
         {
-            fd = null; // если форма закрыта, то установить флаг в null
-            //throw new NotImplementedException();
+            log.Trace("Form {0} closed.", fd.Text);
+            fd = null; // set open form flag to null
         }
 
         public void ShowStatusbarMessage(string message)
         {
             ToolStripStatusLabel statusStrip = this.toolStripStatusLabel1;
             string localDate = DateTime.Now.ToString();
-            statusStrip.Text = message + " " + localDate;
+            if (message == null || message == "") message = "";
+            else message += " (" + localDate + ")";
+            statusStrip.Text = message;
         }
 
-        Form_Report fr;
+        Form_Parameters fp;
 
-        private void ReportsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenParametersForm(object sender, EventArgs e)
         {
-            if (fr == null) // открыть форму можно только один раз
+            if (fp != null) fp.Close(); // close form
+            fp = new Form_Parameters();
+            fp.FormClosed += new FormClosedEventHandler(Fp_FormClosed);
+            fp.Text = "Parameters for " + reportName;
+            fp.Show(this);
+
+            log.Debug("Parameters input form for " + reportName + " is loaded.");
+            ShowStatusbarMessage("Parameters input form for " + reportName + " is loaded.") ;
+        }
+
+        private void Fp_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            log.Trace("Form {0} closed.", fp.Text);
+            fp = null; // set open form flag to null
+        }
+
+        private void gvData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (!firstTime)
             {
-                fr = new Form_Report();
-                fr.MdiParent = this;
-                fr.FormClosed += new FormClosedEventHandler(Fr_FormClosed);
-                fr.Show();
-                splitContainer1.Panel2.Controls.Add(fr);
+                reportName = gvData.CurrentCell.Value.ToString();
+                OpenParametersForm(sender, e);
+                log.Debug("selected report: " + reportName);
             }
-            else
-                fr.Activate(); // если форма уже открыта, то просто переключиться на неё
         }
 
-        private void Fr_FormClosed(object sender, FormClosedEventArgs e)
+        public NpgsqlConnection connRemote;
+        public SqlConnection connLocal;
+
+        // Open connection to ACM server with or without cache.
+        // cache = true  - open local and remote connection
+        // cache = false - open only remote connection
+        public void OpenConnection()
         {
-            fr = null; // если форма закрыта, то установить флаг в null
-            //throw new NotImplementedException();
-        }
+            Boolean cache = (Boolean)Properties.Settings.Default["cache"];
+            if (cache)
+            {
+                // open connection to local database
+                string connStr = Properties.Settings.Default["csRemote"].ToString();
+            }
 
-        private void Form_Parent_Load(object sender, EventArgs e)
+            // open connection to remote database
+            string csRemote = Properties.Settings.Default["csRemote"].ToString();
+            connRemote = new NpgsqlConnection(csRemote);
+
+            try
+            {
+                connRemote.Open();
+                ShowStatusbarMessage("Connection to remote ACM server installed.");
+                log.Info("Connection to remote database installed: {0}.", csRemote);
+            }
+            catch (Exception ex)
+            {
+                ShowStatusbarMessage("Could not install connection to remote ACM server.");
+                log.Error("Could not install connection to remote database: {0}.", ex.Message);
+            }
+         }
+
+        // Close connection to ACM server with or without cache.
+        // cache = true  - close local and remote connection
+        // cache = false - close only remote connection
+        public void CloseConnection()
         {
-            // TODO: данная строка кода позволяет загрузить данные в таблицу "acmreportDataSet.query". При необходимости она может быть перемещена или удалена.
-            this.queryTableAdapter.Fill(this.acmreportDataSet.query);
-
+            Boolean cache = (Boolean)Properties.Settings.Default["cache"];
+            if (cache)
+            {
+                // close local connection
+                connLocal.Close();
+            }
+            // close remote connection
+            connRemote.Close();
         }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripSplitButton_Connection.Image = ACMReport3.Properties.Resources.ball_green;
+            // TODO: Connection
+        }
+
+        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripSplitButton_Connection.Image = ACMReport3.Properties.Resources.ball_red;
+            // TODO: Disconnection
+        }
+
     }
 }

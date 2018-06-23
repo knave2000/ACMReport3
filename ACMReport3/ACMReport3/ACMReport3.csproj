@@ -60,6 +60,9 @@
     <Reference Include="EntityFramework6.Npgsql, Version=3.1.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework6.Npgsql.3.1.1\lib\net45\EntityFramework6.Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -72,32 +75,63 @@
     <Reference Include="PostgreSQLCopyHelper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PostgreSQLCopyHelper.2.0.0\lib\net451\PostgreSQLCopyHelper.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Transactions" />
+    <Reference Include="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="acmreportDataSet.cs">
@@ -113,18 +147,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form_Report.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Report.Designer.cs">
-      <DependentUpon>Form_Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form_Data.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Data.Designer.cs">
-      <DependentUpon>Form_Data.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form_Parameters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,17 +159,23 @@
     <Compile Include="Form_About.Designer.cs">
       <DependentUpon>Form_About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Connect.cs">
+    <Compile Include="Form_Connection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Connect.Designer.cs">
-      <DependentUpon>Form_Connect.cs</DependentUpon>
+    <Compile Include="Form_Connection.Designer.cs">
+      <DependentUpon>Form_Connection.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Parent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_Parent.Designer.cs">
       <DependentUpon>Form_Parent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Plugins.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Plugins.Designer.cs">
+      <DependentUpon>Form_Plugins.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -181,28 +209,42 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>acmreport.mdf</DependentUpon>
     </Content>
+    <Content Include="images\access_control.png" />
+    <Content Include="images\ball_black.png" />
+    <Content Include="images\ball_blue.png" />
+    <Content Include="images\ball_green.png" />
+    <Content Include="images\ball_lightblue.png" />
+    <Content Include="images\ball_magenta.png" />
+    <Content Include="images\ball_pink.png" />
+    <Content Include="images\ball_red.png" />
+    <Content Include="images\ball_white.png" />
+    <Content Include="images\ball_yellow.png" />
     <Content Include="images\report.ico" />
     <Content Include="images\report.png" />
-    <Content Include="plugins\visiors.sql" />
+    <Content Include="plugins.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="plugins\attendance.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="plugins\laters.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="report.ico" />
-    <None Include="Resources\Image1.png" />
-    <EmbeddedResource Include="Form_Report.resx">
-      <DependentUpon>Form_Report.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Data.resx">
-      <DependentUpon>Form_Data.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Connect.resx">
-      <DependentUpon>Form_Connect.cs</DependentUpon>
+    <EmbeddedResource Include="Form_Connection.resx">
+      <DependentUpon>Form_Connection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Parameters.resx">
       <DependentUpon>Form_Parameters.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Parent.resx">
       <DependentUpon>Form_Parent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Plugins.resx">
+      <DependentUpon>Form_Plugins.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -252,6 +294,8 @@
   <ItemGroup>
     <Content Include="images\unhide.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

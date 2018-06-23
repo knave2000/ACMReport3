@@ -1,6 +1,6 @@
 ﻿namespace ACMReport3
 {
-    partial class Form_Connect
+    partial class Form_Connection
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Connect));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Connection));
             this.gb_ACM = new System.Windows.Forms.GroupBox();
             this.button_Hide = new System.Windows.Forms.Button();
             this.tb_ACMPassword = new System.Windows.Forms.TextBox();
@@ -46,6 +46,8 @@
             this.label_Timeout = new System.Windows.Forms.Label();
             this.tb_CommandTimeout = new System.Windows.Forms.TextBox();
             this.label_CommandTimeout = new System.Windows.Forms.Label();
+            this.button_Close = new System.Windows.Forms.Button();
+            this.cb_Cache = new System.Windows.Forms.CheckBox();
             this.gb_ACM.SuspendLayout();
             this.gb_Timers.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +68,7 @@
             this.gb_ACM.Size = new System.Drawing.Size(373, 172);
             this.gb_ACM.TabIndex = 0;
             this.gb_ACM.TabStop = false;
-            this.gb_ACM.Text = "Подключение к ACM серверу";
+            this.gb_ACM.Text = "Connection to ACM server";
             // 
             // button_Hide
             // 
@@ -114,75 +116,76 @@
             this.label_ACMPAssword.AutoSize = true;
             this.label_ACMPAssword.Location = new System.Drawing.Point(7, 135);
             this.label_ACMPAssword.Name = "label_ACMPAssword";
-            this.label_ACMPAssword.Size = new System.Drawing.Size(57, 17);
+            this.label_ACMPAssword.Size = new System.Drawing.Size(69, 17);
             this.label_ACMPAssword.TabIndex = 3;
-            this.label_ACMPAssword.Text = "Пароль";
+            this.label_ACMPAssword.Text = "Password";
             // 
             // label_ACMUsername
             // 
             this.label_ACMUsername.AutoSize = true;
             this.label_ACMUsername.Location = new System.Drawing.Point(7, 102);
             this.label_ACMUsername.Name = "label_ACMUsername";
-            this.label_ACMUsername.Size = new System.Drawing.Size(131, 17);
+            this.label_ACMUsername.Size = new System.Drawing.Size(43, 17);
             this.label_ACMUsername.TabIndex = 2;
-            this.label_ACMUsername.Text = "Имя пользователя";
+            this.label_ACMUsername.Text = "Login";
             // 
             // label_ACMServerPort
             // 
             this.label_ACMServerPort.AutoSize = true;
             this.label_ACMServerPort.Location = new System.Drawing.Point(6, 70);
             this.label_ACMServerPort.Name = "label_ACMServerPort";
-            this.label_ACMServerPort.Size = new System.Drawing.Size(94, 17);
+            this.label_ACMServerPort.Size = new System.Drawing.Size(86, 17);
             this.label_ACMServerPort.TabIndex = 1;
-            this.label_ACMServerPort.Text = "Номер порта";
+            this.label_ACMServerPort.Text = "Port number";
             // 
             // label_ACMServerIP
             // 
             this.label_ACMServerIP.AutoSize = true;
             this.label_ACMServerIP.Location = new System.Drawing.Point(7, 37);
             this.label_ACMServerIP.Name = "label_ACMServerIP";
-            this.label_ACMServerIP.Size = new System.Drawing.Size(63, 17);
+            this.label_ACMServerIP.Size = new System.Drawing.Size(75, 17);
             this.label_ACMServerIP.TabIndex = 0;
-            this.label_ACMServerIP.Text = "IP адрес";
+            this.label_ACMServerIP.Text = "IP address";
             // 
             // button_Test
             // 
-            this.button_Test.Location = new System.Drawing.Point(12, 296);
+            this.button_Test.Location = new System.Drawing.Point(12, 334);
             this.button_Test.Name = "button_Test";
-            this.button_Test.Size = new System.Drawing.Size(204, 30);
+            this.button_Test.Size = new System.Drawing.Size(160, 30);
             this.button_Test.TabIndex = 90;
-            this.button_Test.Text = "Проверить подключение";
+            this.button_Test.Text = "Test Connection";
             this.button_Test.UseVisualStyleBackColor = true;
             this.button_Test.Click += new System.EventHandler(this.Button_Test_Click);
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(248, 296);
+            this.button_Save.Location = new System.Drawing.Point(285, 334);
             this.button_Save.Name = "button_Save";
-            this.button_Save.Size = new System.Drawing.Size(136, 30);
+            this.button_Save.Size = new System.Drawing.Size(100, 30);
             this.button_Save.TabIndex = 80;
-            this.button_Save.Text = "Сохранить";
+            this.button_Save.Text = "Save";
             this.button_Save.UseVisualStyleBackColor = true;
             this.button_Save.Click += new System.EventHandler(this.Button_Save_Click);
             // 
             // gb_Timers
             // 
+            this.gb_Timers.Controls.Add(this.cb_Cache);
             this.gb_Timers.Controls.Add(this.tb_Timeout);
             this.gb_Timers.Controls.Add(this.label_Timeout);
             this.gb_Timers.Controls.Add(this.tb_CommandTimeout);
             this.gb_Timers.Controls.Add(this.label_CommandTimeout);
             this.gb_Timers.Location = new System.Drawing.Point(13, 191);
             this.gb_Timers.Name = "gb_Timers";
-            this.gb_Timers.Size = new System.Drawing.Size(372, 99);
+            this.gb_Timers.Size = new System.Drawing.Size(372, 125);
             this.gb_Timers.TabIndex = 4;
             this.gb_Timers.TabStop = false;
-            this.gb_Timers.Text = "Расширенные свойства";
+            this.gb_Timers.Text = "Advanced settings";
             // 
             // tb_Timeout
             // 
-            this.tb_Timeout.Location = new System.Drawing.Point(235, 63);
+            this.tb_Timeout.Location = new System.Drawing.Point(165, 63);
             this.tb_Timeout.Name = "tb_Timeout";
-            this.tb_Timeout.Size = new System.Drawing.Size(123, 22);
+            this.tb_Timeout.Size = new System.Drawing.Size(193, 22);
             this.tb_Timeout.TabIndex = 70;
             // 
             // label_Timeout
@@ -190,15 +193,15 @@
             this.label_Timeout.AutoSize = true;
             this.label_Timeout.Location = new System.Drawing.Point(6, 66);
             this.label_Timeout.Name = "label_Timeout";
-            this.label_Timeout.Size = new System.Drawing.Size(204, 17);
+            this.label_Timeout.Size = new System.Drawing.Size(129, 17);
             this.label_Timeout.TabIndex = 10;
-            this.label_Timeout.Text = "Время установки соединения";
+            this.label_Timeout.Text = "Connection timeout";
             // 
             // tb_CommandTimeout
             // 
-            this.tb_CommandTimeout.Location = new System.Drawing.Point(235, 29);
+            this.tb_CommandTimeout.Location = new System.Drawing.Point(165, 29);
             this.tb_CommandTimeout.Name = "tb_CommandTimeout";
-            this.tb_CommandTimeout.Size = new System.Drawing.Size(123, 22);
+            this.tb_CommandTimeout.Size = new System.Drawing.Size(193, 22);
             this.tb_CommandTimeout.TabIndex = 60;
             // 
             // label_CommandTimeout
@@ -206,15 +209,36 @@
             this.label_CommandTimeout.AutoSize = true;
             this.label_CommandTimeout.Location = new System.Drawing.Point(6, 32);
             this.label_CommandTimeout.Name = "label_CommandTimeout";
-            this.label_CommandTimeout.Size = new System.Drawing.Size(197, 17);
+            this.label_CommandTimeout.Size = new System.Drawing.Size(121, 17);
             this.label_CommandTimeout.TabIndex = 9;
-            this.label_CommandTimeout.Text = "Время выполнения команды";
+            this.label_CommandTimeout.Text = "Command timeout";
             // 
-            // Form_Connect
+            // button_Close
+            // 
+            this.button_Close.Location = new System.Drawing.Point(178, 334);
+            this.button_Close.Name = "button_Close";
+            this.button_Close.Size = new System.Drawing.Size(100, 30);
+            this.button_Close.TabIndex = 91;
+            this.button_Close.Text = "Close";
+            this.button_Close.UseVisualStyleBackColor = true;
+            this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
+            // 
+            // cb_Cache
+            // 
+            this.cb_Cache.AutoSize = true;
+            this.cb_Cache.Location = new System.Drawing.Point(165, 98);
+            this.cb_Cache.Name = "cb_Cache";
+            this.cb_Cache.Size = new System.Drawing.Size(130, 21);
+            this.cb_Cache.TabIndex = 71;
+            this.cb_Cache.Text = "Use local cache";
+            this.cb_Cache.UseVisualStyleBackColor = true;
+            // 
+            // Form_Connection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 335);
+            this.ClientSize = new System.Drawing.Size(402, 376);
+            this.Controls.Add(this.button_Close);
             this.Controls.Add(this.gb_Timers);
             this.Controls.Add(this.button_Test);
             this.Controls.Add(this.button_Save);
@@ -223,11 +247,12 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form_Connect";
+            this.Name = "Form_Connection";
             this.ShowIcon = false;
-            this.Text = "Сетевое подключение";
+            this.Text = "Network connection";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Connect_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Connection_FormClosed);
+            this.Load += new System.EventHandler(this.Form_Connection_Load);
             this.gb_ACM.ResumeLayout(false);
             this.gb_ACM.PerformLayout();
             this.gb_Timers.ResumeLayout(false);
@@ -255,5 +280,7 @@
         private System.Windows.Forms.Label label_CommandTimeout;
         private System.Windows.Forms.TextBox tb_Timeout;
         private System.Windows.Forms.Label label_Timeout;
+        private System.Windows.Forms.Button button_Close;
+        private System.Windows.Forms.CheckBox cb_Cache;
     }
 }

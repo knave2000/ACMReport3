@@ -29,83 +29,64 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Parameters));
-            this.button_Browse = new System.Windows.Forms.Button();
-            this.tb_CommandTimeout = new System.Windows.Forms.TextBox();
-            this.button_Save = new System.Windows.Forms.Button();
-            this.label_CommandTimeout = new System.Windows.Forms.Label();
-            this.gb_Settings = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.gb_Settings.SuspendLayout();
+            this.gbFilter = new System.Windows.Forms.GroupBox();
+            this.buttonRun = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_Browse
+            // gbFilter
             // 
-            this.button_Browse.BackgroundImage = global::ACMReport3.Properties.Resources.openToolStripButton_Image;
-            this.button_Browse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_Browse.Location = new System.Drawing.Point(433, 22);
-            this.button_Browse.Name = "button_Browse";
-            this.button_Browse.Size = new System.Drawing.Size(23, 23);
-            this.button_Browse.TabIndex = 20;
-            this.button_Browse.UseMnemonic = false;
-            this.button_Browse.UseVisualStyleBackColor = true;
-            this.button_Browse.Click += new System.EventHandler(this.Button_Browse_Click);
+            this.gbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbFilter.Location = new System.Drawing.Point(13, 13);
+            this.gbFilter.Name = "gbFilter";
+            this.gbFilter.Size = new System.Drawing.Size(507, 158);
+            this.gbFilter.TabIndex = 0;
+            this.gbFilter.TabStop = false;
+            this.gbFilter.Text = "Filter";
             // 
-            // tb_CommandTimeout
+            // buttonRun
             // 
-            this.tb_CommandTimeout.Location = new System.Drawing.Point(161, 23);
-            this.tb_CommandTimeout.Name = "tb_CommandTimeout";
-            this.tb_CommandTimeout.Size = new System.Drawing.Size(265, 22);
-            this.tb_CommandTimeout.TabIndex = 10;
+            this.buttonRun.Location = new System.Drawing.Point(419, 3);
+            this.buttonRun.Name = "buttonRun";
+            this.buttonRun.Size = new System.Drawing.Size(110, 30);
+            this.buttonRun.TabIndex = 500;
+            this.buttonRun.Text = "Run";
+            this.buttonRun.UseVisualStyleBackColor = true;
+            this.buttonRun.Click += new System.EventHandler(this.ButtonRun_Click);
             // 
-            // button_Save
+            // buttonClose
             // 
-            this.button_Save.Location = new System.Drawing.Point(371, 171);
-            this.button_Save.Name = "button_Save";
-            this.button_Save.Size = new System.Drawing.Size(110, 30);
-            this.button_Save.TabIndex = 1;
-            this.button_Save.Text = "Сохранить";
-            this.button_Save.UseVisualStyleBackColor = true;
-            this.button_Save.Click += new System.EventHandler(this.Button_Save_Click);
+            this.buttonClose.Location = new System.Drawing.Point(303, 3);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(110, 30);
+            this.buttonClose.TabIndex = 490;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
-            // label_CommandTimeout
+            // flowLayoutPanel1
             // 
-            this.label_CommandTimeout.AutoSize = true;
-            this.label_CommandTimeout.Location = new System.Drawing.Point(7, 26);
-            this.label_CommandTimeout.Name = "label_CommandTimeout";
-            this.label_CommandTimeout.Size = new System.Drawing.Size(112, 17);
-            this.label_CommandTimeout.TabIndex = 1;
-            this.label_CommandTimeout.Text = "Путь к каталогу";
-            // 
-            // gb_Settings
-            // 
-            this.gb_Settings.Controls.Add(this.button_Browse);
-            this.gb_Settings.Controls.Add(this.label_CommandTimeout);
-            this.gb_Settings.Controls.Add(this.tb_CommandTimeout);
-            this.gb_Settings.Location = new System.Drawing.Point(13, 13);
-            this.gb_Settings.Name = "gb_Settings";
-            this.gb_Settings.Size = new System.Drawing.Size(468, 152);
-            this.gb_Settings.TabIndex = 0;
-            this.gb_Settings.TabStop = false;
-            this.gb_Settings.Text = "Модули";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 168);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 30);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Очистить кеш";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.Controls.Add(this.buttonRun);
+            this.flowLayoutPanel1.Controls.Add(this.buttonClose);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 174);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(532, 36);
+            this.flowLayoutPanel1.TabIndex = 3;
             // 
             // Form_Parameters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 210);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button_Save);
-            this.Controls.Add(this.gb_Settings);
+            this.ClientSize = new System.Drawing.Size(532, 210);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.gbFilter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -114,20 +95,20 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Параметры";
+            this.Text = "Parameters";
+            this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Parameters_FormClosed);
-            this.gb_Settings.ResumeLayout(false);
-            this.gb_Settings.PerformLayout();
+            this.Shown += new System.EventHandler(this.Form_Parameters_Shown);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button_Save;
-        private System.Windows.Forms.TextBox tb_CommandTimeout;
-        private System.Windows.Forms.Button button_Browse;
-        private System.Windows.Forms.Label label_CommandTimeout;
-        private System.Windows.Forms.GroupBox gb_Settings;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox gbFilter;
+        private System.Windows.Forms.Button buttonRun;
+        private System.Windows.Forms.Button buttonClose;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
