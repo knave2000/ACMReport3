@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ACM Report 3.0.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,14 +67,14 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Npgsql, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>..\packages\Npgsql.4.0.0\lib\net451\Npgsql.dll</HintPath>
+    <Reference Include="Npgsql, Version=4.0.1.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.4.0.1\lib\net451\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="Npgsql.Bulk, Version=0.5.16.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.Bulk.0.5.16\lib\net45\Npgsql.Bulk.dll</HintPath>
     </Reference>
-    <Reference Include="PostgreSQLCopyHelper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostgreSQLCopyHelper.2.0.0\lib\net451\PostgreSQLCopyHelper.dll</HintPath>
+    <Reference Include="PostgreSQLCopyHelper, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostgreSQLCopyHelper.2.3.1\lib\net451\PostgreSQLCopyHelper.dll</HintPath>
     </Reference>
     <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -106,7 +107,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -115,7 +116,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.0\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -134,19 +135,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="acmreportDataSet.cs">
-      <DependentUpon>acmreportDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="acmreportDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>acmreportDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="dataDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dataDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Form_Parameters.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,36 +167,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="acmreportDataSet.xsc">
-      <DependentUpon>acmreportDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="acmreportDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>acmreportDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="acmreportDataSet.xss">
-      <DependentUpon>acmreportDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="dataDataSet.xsc">
-      <DependentUpon>dataDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="dataDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dataDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="dataDataSet.xss">
-      <DependentUpon>dataDataSet.xsd</DependentUpon>
-    </None>
     <None Include="images\openToolStripButton.Image.png" />
-    <Content Include="acmreport.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="acmreport_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>acmreport.mdf</DependentUpon>
-    </Content>
     <Content Include="images\access_control.png" />
     <Content Include="images\ball_black.png" />
     <Content Include="images\ball_blue.png" />
@@ -282,7 +241,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.1 %28x86 и x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.1 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
