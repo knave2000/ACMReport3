@@ -37,7 +37,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\ACM Report 3.0.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -180,6 +181,7 @@
     <Content Include="images\ball_yellow.png" />
     <Content Include="images\report.ico" />
     <Content Include="images\report.png" />
+    <Content Include="Notes.txt" />
     <Content Include="plugins.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

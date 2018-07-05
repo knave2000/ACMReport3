@@ -19,20 +19,26 @@ namespace ACMReport3
         public Form_Parameters()
         {
             InitializeComponent();
-
         }
 
         private void Form_Parameters_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((Form_Parent)this.Owner).ShowStatusbarMessage("");
             log.Debug("Close parameters form");
-            Array.Clear(sql_param, 0, sql_param.Length); 
         }
 
         private void ButtonRun_Click(object sender, EventArgs e)
         {
+            // if connection is not installed - exit
+            if (!((Form_Parent)this.Owner).connectionInstalled)
+            {
+                ((Form_Parent)this.Owner).ShowStatusbarMessage("Could not prepare report. Connection to ACM server is not installed.");
+                log.Debug("Could not prepare report.Connection to ACM server is not installed.");
+                return;
+            }
+
             string reportName = ((Form_Parent)this.Owner).reportName;
-            ((Form_Parent)this.Owner).ShowStatusbarMessage("Building " + reportName);
+            ((Form_Parent)this.Owner).ShowStatusbarMessage("Building '" + reportName + "'");
             log.Debug("Building {0}", reportName);
 
             // prepare parameters for SQL query
@@ -166,7 +172,9 @@ namespace ACMReport3
 
         private static String pluginName;
 
-        private static string[] sql_param = new string[20]; // SQL Parameters
+        private static int max_index = 20; // maximum parameters in SQL query
+        private static string[] sql_param = new string[max_index]; // temporary array of parameters
+        private static string[] result_param = new string[max_index]; // final array of parameters
 
         XmlNode param_index;
         XmlNode param_name;
@@ -179,7 +187,7 @@ namespace ACMReport3
             Cursor.Current = Cursors.WaitCursor; // change cursor to wait form
             ((Form_Parent)this.Owner).ShowStatusbarMessage("Loading data...");
 
-            ((Form_Parent)this.Owner).OpenConnection();
+            //((Form_Parent)this.Owner).OpenConnection();
 
             // init element position
             Point start_label = new Point(5, 23);
@@ -245,12 +253,12 @@ namespace ACMReport3
                                             try
                                             {
                                                 Int32.TryParse(param_index.Value, out cur_index);
-                                                sql_param[cur_index] = "---";
+                                                sql_param[cur_index] = "---"; // temporary value
                                                 log.Trace("Index parsed as {0}", cur_index);
                                             }
                                             catch (Exception ex)
                                             {
-                                                log.Error("Could not parse index attribute: {0}", ex.Message);
+                                                log.Error("Could not convert index string to integer: {0}", ex.Message);
                                             }
                                         }
 
@@ -383,14 +391,16 @@ namespace ACMReport3
             // resize form
             this.Height = i * vert_interval + 130;
 
-            ((Form_Parent)this.Owner).CloseConnection();
+            //((Form_Parent)this.Owner).CloseConnection();
 
-            // Log raw sql parameters array
-            sql_param = CleanArray(sql_param); // remove empty items
-            for (int j = 0; j < sql_param.Length; j++)
+            // Log final sql parameters array
+            result_param = CleanArray(sql_param); // final array without empty items
+            for (int j = 0; j < result_param.Length; j++)
             {
-                log.Trace("P {0}: {1}", j, sql_param[j]);
+                log.Trace("P {0}: {1}", j, result_param[j]);
             }
+            Array.Clear(sql_param, 0, sql_param.Length); // clean temporary param array
+
         }
 
     }

@@ -42,12 +42,12 @@
             this.button_Test = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
             this.gb_Timers = new System.Windows.Forms.GroupBox();
+            this.cb_Cache = new System.Windows.Forms.CheckBox();
             this.tb_Timeout = new System.Windows.Forms.TextBox();
             this.label_Timeout = new System.Windows.Forms.Label();
             this.tb_CommandTimeout = new System.Windows.Forms.TextBox();
             this.label_CommandTimeout = new System.Windows.Forms.Label();
             this.button_Close = new System.Windows.Forms.Button();
-            this.cb_Cache = new System.Windows.Forms.CheckBox();
             this.gb_ACM.SuspendLayout();
             this.gb_Timers.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +68,7 @@
             this.gb_ACM.Size = new System.Drawing.Size(373, 172);
             this.gb_ACM.TabIndex = 0;
             this.gb_ACM.TabStop = false;
-            this.gb_ACM.Text = "Connection to ACM server";
+            this.gb_ACM.Text = "ACM server";
             // 
             // button_Hide
             // 
@@ -181,6 +181,16 @@
             this.gb_Timers.TabStop = false;
             this.gb_Timers.Text = "Advanced settings";
             // 
+            // cb_Cache
+            // 
+            this.cb_Cache.AutoSize = true;
+            this.cb_Cache.Location = new System.Drawing.Point(165, 98);
+            this.cb_Cache.Name = "cb_Cache";
+            this.cb_Cache.Size = new System.Drawing.Size(130, 21);
+            this.cb_Cache.TabIndex = 71;
+            this.cb_Cache.Text = "Use local cache";
+            this.cb_Cache.UseVisualStyleBackColor = true;
+            // 
             // tb_Timeout
             // 
             this.tb_Timeout.Location = new System.Drawing.Point(165, 63);
@@ -223,16 +233,6 @@
             this.button_Close.UseVisualStyleBackColor = true;
             this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
             // 
-            // cb_Cache
-            // 
-            this.cb_Cache.AutoSize = true;
-            this.cb_Cache.Location = new System.Drawing.Point(165, 98);
-            this.cb_Cache.Name = "cb_Cache";
-            this.cb_Cache.Size = new System.Drawing.Size(130, 21);
-            this.cb_Cache.TabIndex = 71;
-            this.cb_Cache.Text = "Use local cache";
-            this.cb_Cache.UseVisualStyleBackColor = true;
-            // 
             // Form_Connection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -249,7 +249,7 @@
             this.MinimizeBox = false;
             this.Name = "Form_Connection";
             this.ShowIcon = false;
-            this.Text = "Network connection";
+            this.Text = "Connection Settings";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_Connection_FormClosed);
             this.Load += new System.EventHandler(this.Form_Connection_Load);

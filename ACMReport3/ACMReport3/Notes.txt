@@ -1,0 +1,5 @@
+﻿При повторном вызове отчета выдается ошибка. - fixed
+стр.262 - Form_Parameters.cs
+индекс массива превышен.
+sql_param[cur_index] = param_name.Value;
+

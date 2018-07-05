@@ -180,6 +180,7 @@ namespace ACMReport3
 
         public NpgsqlConnection connRemote;
         public SqlConnection connLocal;
+        public Boolean connectionInstalled = false;
 
         // Open connection to ACM server with or without cache.
         // cache = true  - open local and remote connection
@@ -191,6 +192,7 @@ namespace ACMReport3
             {
                 // open connection to local database
                 string connStr = Properties.Settings.Default["csRemote"].ToString();
+                //TODO: try-catch local database
             }
 
             // open connection to remote database
@@ -202,11 +204,13 @@ namespace ACMReport3
                 connRemote.Open();
                 ShowStatusbarMessage("Connection to remote ACM server installed.");
                 log.Info("Connection to remote database installed: {0}.", csRemote);
+                connectionInstalled = true;
             }
             catch (Exception ex)
             {
-                ShowStatusbarMessage("Could not install connection to remote ACM server.");
-                log.Error("Could not install connection to remote database: {0}.", ex.Message);
+                ShowStatusbarMessage("Could not connect to ACM server. Check and save connection settings.");
+                log.Error("Could not install connection to ACM server: {0}.", ex.Message);
+                connectionInstalled = false;
             }
          }
 
@@ -220,21 +224,41 @@ namespace ACMReport3
             {
                 // close local connection
                 connLocal.Close();
+                //TODO: disconnect from local server
             }
             // close remote connection
-            connRemote.Close();
+            try
+            {
+                connRemote.Close();
+                ShowStatusbarMessage("Connection to remote ACM server closed.");
+                log.Info("Connection to remote database closed.");
+                connectionInstalled = false;
+            }
+            catch (Exception ex)
+            {
+                ShowStatusbarMessage("Could not disconnect from remote ACM server.");
+                log.Error("Could not disconnect from ACM server: {0}.", ex.Message);
+                connectionInstalled = true;
+            }
         }
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStripSplitButton_Connection.Image = ACMReport3.Properties.Resources.ball_green;
-            // TODO: Connection
+            OpenConnection();
+            if (connectionInstalled)
+            {
+                toolStripSplitButton_Connection.Image = ACMReport3.Properties.Resources.ball_green;
+            }
+            
         }
 
         private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStripSplitButton_Connection.Image = ACMReport3.Properties.Resources.ball_red;
-            // TODO: Disconnection
+            CloseConnection();
+            if (!connectionInstalled)
+            {
+                toolStripSplitButton_Connection.Image = ACMReport3.Properties.Resources.ball_red;
+            }
         }
 
     }
